@@ -14,8 +14,14 @@ import {Telefono} from '../models/telefono.model';
 })
 export class ApiService {
   private apiUrl = 'http://localhost:8080';
-  private token = 'notlogged';
-  constructor(private http: HttpClient) { }
+  private token: string;
+  constructor(private http: HttpClient) {
+    this.token = localStorage.getItem('token') || 'notlogged';
+    // check if it works
+    this.getMe().subscribe(() => {} , () => {
+      this.token = 'notlogged';
+    });
+  }
 
   private getHeader(): string {
     return `Bearer ${this.token}`;
@@ -29,6 +35,7 @@ export class ApiService {
 
   public setToken(token: string) {
     this.token = token;
+    localStorage.setItem('token', token);
   }
 
   public isLogged(): boolean {
@@ -93,6 +100,10 @@ export class ApiService {
 
   createTelefono(telefono: Telefono): Observable<any> {
     return this.http.post(`${this.apiUrl}/telefono/create`, telefono, this.getHeaderOptions());
+  }
+
+  replaceTelefoni(telefoni: Telefono[]): Observable<Telefono[]> {
+    return this.http.put<Telefono[]>(`${this.apiUrl}/telefono/replace`, telefoni, this.getHeaderOptions());
   }
 
 }

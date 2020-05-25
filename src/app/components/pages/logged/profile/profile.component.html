@@ -1,24 +1,35 @@
-<form [formGroup]="profileForm" (ngSubmit)="submit()">
-  <div class="form-group">
-    <label for="exampleInputEmail0">Username</label>
-    <input disabled formControlName="username" type="text" class="form-control" id="exampleInputEmail0" aria-describedby="emailHelp0" placeholder="Il tuo username">
-    <small id="emailHelp0" class="form-text text-muted">Il tuo username</small>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email</label>
-    <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="La tua email">
-    <small id="emailHelp" class="form-text text-muted">La tua email</small>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Nome</label>
-    <input formControlName="nome" type="text" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp2" placeholder="Il tuo nome">
-    <small id="emailHelp2" class="form-text text-muted">Il tuo nome</small>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputEmail3">Cognome</label>
-    <input formControlName="cognome" type="text" class="form-control" id="exampleInputEmail3" aria-describedby="emailHelp3" placeholder="Il tuo cognome">
-    <small id="emailHelp3" class="form-text text-muted">Il tuo cognome</small>
-  </div>
-  <p style="color: #28e22b" *ngIf="success">Profilo aggiornato!</p>
-  <button type="submit" class="btn btn-primary">Salva informazioni profilo</button>
-</form>
+<br>
+<div class="col-md-12">
+  <form [formGroup]="profileForm" (ngSubmit)="submit()">
+    <div class="form-group">
+      <label for="exampleInputEmail0">Username</label>
+      <input disabled formControlName="username" type="text" class="form-control" id="exampleInputEmail0" aria-describedby="emailHelp0" placeholder="Il tuo username">
+      <small id="emailHelp0" class="form-text text-muted">Il tuo username</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email</label>
+      <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="La tua email">
+      <small id="emailHelp" class="form-text text-muted">La tua email</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Nome</label>
+      <input formControlName="nome" type="text" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp2" placeholder="Il tuo nome">
+      <small id="emailHelp2" class="form-text text-muted">Il tuo nome</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail3">Cognome</label>
+      <input formControlName="cognome" type="text" class="form-control" id="exampleInputEmail3" aria-describedby="emailHelp3" placeholder="Il tuo cognome">
+      <small id="emailHelp3" class="form-text text-muted">Il tuo cognome</small>
+    </div>
+    <p style="color: #28e22b" *ngIf="success">Profilo aggiornato!</p>
+    <button type="submit" class="btn btn-primary">Salva informazioni profilo</button>
+  </form>
+</div>
+<br>
+<div class="col-md-6">
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let telefono of persona.telefoni">
+      {{ telefono.numero }}
+    </li>
+  </ul>
+</div>
