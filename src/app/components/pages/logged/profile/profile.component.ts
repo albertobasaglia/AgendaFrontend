@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ApiService} from '../../../../services/api.service';
 import {Persona} from '../../../../models/persona.model';
 import {FormArray, FormControl, FormGroup} from '@angular/forms';
+import {Telefono} from '../../../../models/telefono.model';
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +16,10 @@ export class ProfileComponent implements OnInit {
     nome: new FormControl(''),
     cognome: new FormControl(''),
     email: new FormControl(''),
-    username: new FormControl('')
+    username: new FormControl({value: '', disabled: true})
+  });
+  telefoniForm = new FormGroup({
+    telefoni: new FormArray([])
   });
   constructor(private api: ApiService) { }
 
@@ -27,6 +31,11 @@ export class ProfileComponent implements OnInit {
   update(persona: Persona) {
     this.persona = persona;
     this.profileForm.patchValue(persona);
+    this.telefoni.clear();
+    persona.telefoni.forEach((telefono) => {
+      this.addTelefono(telefono.numero);
+    });
+    this.telefoni.patchValue(persona.telefoni);
   }
   submit() {
     this.api.updatePerson(this.profileForm.value).subscribe((newPerson: Persona) => {
@@ -35,4 +44,20 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  get telefoni() {
+    return this.telefoniForm.get('telefoni') as FormArray;
+  }
+
+  addTelefono(value: string) {
+    this.telefoni.push(new FormGroup({numero: new FormControl(value)}));
+  }
+
+  submitTelefoni() {
+    console.log(this.telefoniForm.value);
+    this.api.replaceTelefoni(this.telefoniForm.value.telefoni)
+      .subscribe((telefoni: Telefono[]) => {
+        this.persona.telefoni = telefoni;
+        this.update(this.persona);
+      });
+  }
 }

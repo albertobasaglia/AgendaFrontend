@@ -3,7 +3,7 @@
   <form [formGroup]="profileForm" (ngSubmit)="submit()">
     <div class="form-group">
       <label for="exampleInputEmail0">Username</label>
-      <input disabled formControlName="username" type="text" class="form-control" id="exampleInputEmail0" aria-describedby="emailHelp0" placeholder="Il tuo username">
+      <input formControlName="username" type="text" class="form-control" id="exampleInputEmail0" aria-describedby="emailHelp0" placeholder="Il tuo username">
       <small id="emailHelp0" class="form-text text-muted">Il tuo username</small>
     </div>
     <div class="form-group">
@@ -27,9 +27,19 @@
 </div>
 <br>
 <div class="col-md-6">
-  <ul class="list-group">
-    <li class="list-group-item" *ngFor="let telefono of persona.telefoni">
-      {{ telefono.numero }}
-    </li>
-  </ul>
+  <form [formGroup]="telefoniForm" (ngSubmit)="submitTelefoni()">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let control of telefoni.controls; let i = index" formArrayName="telefoni">
+
+        <div [formGroup]="control">
+          <input type="text" formControlName="numero"> <button (click)="$event.preventDefault(); telefoni.removeAt(i)">delete</button>
+        </div>
+      </li>
+    </ul>
+    <br>
+    <button class="btn btn-light" (click)="$event.preventDefault();addTelefono('')">add</button>
+    <br>
+    <button type="submit" class="btn btn-primary">Salva telefoni</button>
+  </form>
 </div>
+
