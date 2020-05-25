@@ -1,0 +1,26 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="assets/svgs/agenda.svg" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" formControlName="username">
+      <p style="color: #e22828" *ngIf="loginForm.controls['username'].invalid && loginForm.controls['username']?.touched">necessario!</p>
+      <input type="password" id="password" class="fadeIn third" name="login" placeholder="password" formControlName="password">
+      <p style="color: #e22828" *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password']?.touched">necessaria!</p>
+      <input type="submit" class="fadeIn fourth" value="Log In" [disabled]="loginForm.invalid">
+      <p style="color: #e22828" *ngIf="error">Credenziali errate!</p>
+    </form>
+
+    <!-- Remind Passowrd -->
+<!--    <div id="formFooter">-->
+<!--      <a class="underlineHover" href="#">Forgot Password?</a>-->
+<!--    </div>-->
+
+  </div>
+</div>
