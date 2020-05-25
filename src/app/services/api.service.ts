@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpResponse} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Persona} from '../models/persona.model';
@@ -14,7 +14,7 @@ import {Telefono} from '../models/telefono.model';
 })
 export class ApiService {
   private apiUrl = 'http://localhost:8080';
-  private token = 'randomtoken';
+  private token = 'notlogged';
   constructor(private http: HttpClient) { }
 
   private getHeader(): string {
@@ -24,12 +24,15 @@ export class ApiService {
     return {Authorization: this.getHeader()};
   }
   private getHeaderOptions(): {headers: {}} {
-    return {headers: {
-        Authorization: this.getHeader()} };
+    return {headers: this.getHeaderField() };
   }
 
   public setToken(token: string) {
     this.token = token;
+  }
+
+  public isLogged(): boolean {
+    return this.token !== 'notlogged';
   }
 
   // authentication
