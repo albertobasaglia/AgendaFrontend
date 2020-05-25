@@ -9,18 +9,24 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { HomeComponent } from './components/pages/logged/home/home.component';
 import {IsLoggedGuard} from './guards/IsLoggedGuard';
 import {IsAlreadyLoggedGuard} from './guards/IsAlreadyLoggedGuard';
+import { LoggedComponent } from './components/pages/logged/logged.component';
+import { ProfileComponent } from './components/pages/logged/profile/profile.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    LoggedComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    RouterModule
   ],
   providers: [IsLoggedGuard, IsAlreadyLoggedGuard],
   bootstrap: [AppComponent]

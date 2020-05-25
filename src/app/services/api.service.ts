@@ -35,6 +35,10 @@ export class ApiService {
     return this.token !== 'notlogged';
   }
 
+  public logout() {
+    this.token = 'notlogged';
+  }
+
   // authentication
   loginGetToken(username: string, password: string): Observable<string> {
     return this.http.post(`${this.apiUrl}/authenticate`, {username, password}).pipe(map((res: {token: string}) => res.token));
