@@ -55,6 +55,9 @@ export class ApiService {
   listPeople(query: string = ''): Observable<Persona[]> {
     return this.http.get<Persona[]>(`${this.apiUrl}/persona/list/${query}`, this.getHeaderOptions());
   }
+  updatePerson(persona: Persona): Observable<Persona> {
+    return this.http.put<Persona>(`${this.apiUrl}/persona/update`, persona, this.getHeaderOptions());
+  }
 
   // appuntamento
 
