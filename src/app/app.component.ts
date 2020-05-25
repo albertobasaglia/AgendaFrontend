@@ -3,6 +3,8 @@ import {ApiService} from './services/api.service';
 import {Persona} from './models/persona.model';
 import {Appuntamento} from './models/appuntamento.model';
 import {AppuntamentoSend} from './models/appuntamentoSend.model';
+import {Promemoria} from './models/promemoria.model';
+import {Telefono} from './models/telefono.model';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +30,10 @@ export class AppComponent implements OnInit{
       // this.api.createAppuntamento(appuntamentoSend).subscribe((appuntamento: Appuntamento) => {
       //   this.api.getAppuntamentoById(appuntamento.id).subscribe((appuntamento) => console.log(appuntamento));
       // });
-
+      // this.api.listPromemoria().subscribe((res: Promemoria[]) => console.log(new Date(res[0].dataFine).getFullYear()));
+      // const tel = new Telefono();
+      // tel.numero = '00000';
+      // this.api.createTelefono(tel).subscribe();
     }));
   }
 
