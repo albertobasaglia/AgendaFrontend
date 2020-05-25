@@ -3,6 +3,8 @@ import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Persona} from '../models/persona.model';
+import {Appuntamento} from '../models/appuntamento.model';
+import {AppuntamentoSend} from '../models/appuntamentoSend.model';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +38,21 @@ export class ApiService {
   }
   getMe(): Observable<Persona> {
     return this.http.get<Persona>(`${this.apiUrl}/persona/me`, this.getHeaderOptions());
+  }
+  listPeople(query: string = ''): Observable<Persona[]> {
+    return this.http.get<Persona[]>(`${this.apiUrl}/persona/list/${query}`, this.getHeaderOptions());
+  }
+  listAppuntamento(): Observable<Appuntamento[]> {
+    return this.http.get<Appuntamento[]>(`${this.apiUrl}/appuntamento/view`, this.getHeaderOptions());
+  }
+  getAppuntamentoById(id: number): Observable<Appuntamento> {
+    return this.http.get<Appuntamento>(`${this.apiUrl}/appuntamento/view/${id.toString()}`, this.getHeaderOptions());
+  }
+  createAppuntamento(appuntamentoSend: AppuntamentoSend): Observable<Appuntamento> {
+    return this.http.post<Appuntamento>(`${this.apiUrl}/appuntamento/create`, appuntamentoSend, this.getHeaderOptions());
+  }
+  deleteAppuntamentoById(id: number): Observable<Appuntamento> {
+    return this.http.delete<Appuntamento>(`${this.apiUrl}/appuntamento/delete/${id.toString()}`, this.getHeaderOptions());
   }
 
 }
