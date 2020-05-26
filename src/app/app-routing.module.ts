@@ -9,6 +9,10 @@ import {ProfileComponent} from './components/pages/logged/profile/profile.compon
 import {EmptyComponent} from './components/logged/home/empty/empty.component';
 import {ViewAppuntamentoComponent} from './components/logged/home/view-appuntamento/view-appuntamento.component';
 import {ViewPromemoriaComponent} from './components/logged/home/view-promemoria/view-promemoria.component';
+import {NewAppuntamentoComponent} from './components/logged/home/new-appuntamento/new-appuntamento.component';
+import {NewPromemoriaComponent} from './components/logged/home/new-promemoria/new-promemoria.component';
+import {EventsComponent} from './components/pages/events/events.component';
+import {BackComponent} from './components/pages/back/back.component';
 
 
 const routes: Routes = [
@@ -20,9 +24,16 @@ const routes: Routes = [
           {path: '', component: EmptyComponent},
           {path: 'appuntamento/:id', component: ViewAppuntamentoComponent},
           {path: 'promemoria/:id', component: ViewPromemoriaComponent},
+          {path: 'newAppuntamento', component: NewAppuntamentoComponent},
+          {path: 'newPromemoria', component: NewPromemoriaComponent},
           {path: '**', redirectTo: ''}
         ]},
-      {path: 'profile', component: ProfileComponent}
+      {path: 'profile', component: ProfileComponent},
+      {path: 'viewer', component: BackComponent, children: [
+          {path: 'appuntamento/:id', component: ViewAppuntamentoComponent},
+          {path: 'promemoria/:id', component: ViewPromemoriaComponent},
+        ]},
+      {path: 'eventi', component: EventsComponent}
     ]}
 
 ];

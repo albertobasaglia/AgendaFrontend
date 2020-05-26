@@ -25,7 +25,6 @@ export class ViewAppuntamentoComponent implements OnInit {
       });
       this.api.personeInAppuntamentoById(this.id).subscribe((persone: Persona[]) => {
         this.persone = persone;
-        console.table(persone);
       });
     });
   }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Persona} from '../models/persona.model';
 import {Appuntamento} from '../models/appuntamento.model';
@@ -15,6 +15,8 @@ import {Telefono} from '../models/telefono.model';
 export class ApiService {
   private apiUrl = 'http://localhost:8080';
   private token: string;
+  update = new Subject<void>();
+
   constructor(private http: HttpClient) {
     this.token = localStorage.getItem('token') || 'notlogged';
     // check if it works
@@ -89,6 +91,12 @@ export class ApiService {
       {params: {from: from.toISOString(), to: to.toISOString()}, headers: this.getHeaderField()}
       );
   }
+  getAppuntamenti(): Observable<Appuntamento[]> {
+    return this.http.get<Appuntamento[]>(
+      `${this.apiUrl}/appuntamento/view`,
+      {headers: this.getHeaderField()}
+    );
+  }
 
   // promemoria
 
@@ -108,6 +116,12 @@ export class ApiService {
     return this.http.get<Promemoria[]>(
       `${this.apiUrl}/promemoria/viewDate`,
       {params: {from: from.toISOString(), to: to.toISOString()}, headers: this.getHeaderField()}
+    );
+  }
+  getPromemoria(): Observable<Promemoria[]> {
+    return this.http.get<Promemoria[]>(
+      `${this.apiUrl}/promemoria/view`,
+      {headers: this.getHeaderField()}
     );
   }
 

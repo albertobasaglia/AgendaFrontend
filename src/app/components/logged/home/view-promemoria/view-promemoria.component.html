@@ -1,1 +1,15 @@
-<p>view-promemoria works!</p>
+<div class="row">
+  <div class="col-md-12">
+    <h2>"{{ promemoria.descrizione }}"</h2>
+    <b>Da</b> {{ promemoria.dataInizio | date:'short' }}
+    <b>A</b> {{ promemoria.dataFine | date:'short' }}
+    <br><br>
+    <h5>Ricorrenza</h5>
+    <div [ngSwitch]="promemoria.ricorrenza">
+      <p *ngSwitchCase="'settimanale'">Il {{ giorni[dayWeek]?.toLowerCase() }} di ogni settimana</p>
+      <p *ngSwitchCase="'mensile'">Il {{ dayNumber }} di ogni mese</p>
+      <p *ngSwitchCase="'annuale'">Il {{dayNumber}} {{mesi[month]}} di ogni anno</p>
+      <p *ngSwitchCase="'nessuna'">Nessuna</p>
+    </div>
+  </div>
+</div>

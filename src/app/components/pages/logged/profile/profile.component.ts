@@ -53,7 +53,6 @@ export class ProfileComponent implements OnInit {
   }
 
   submitTelefoni() {
-    console.log(this.telefoniForm.value);
     this.api.replaceTelefoni(this.telefoniForm.value.telefoni)
       .subscribe((telefoni: Telefono[]) => {
         this.persona.telefoni = telefoni;

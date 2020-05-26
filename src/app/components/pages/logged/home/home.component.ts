@@ -16,13 +16,19 @@ export class HomeComponent implements OnInit {
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
+    this.update();
+    this.api.update.subscribe(() => {
+      this.update();
+    });
+  }
+  update() {
     this.api.getAppuntamentoByDateInterval(
       new Date(),
       new Date(new Date().getTime() + (1000 * 60 * 60 * 24))
     )
       .subscribe((appuntamenti: Appuntamento[]) => {
-      this.appuntamenti = appuntamenti;
-    });
+        this.appuntamenti = appuntamenti;
+      });
     this.api.getPromemoriaByDateInterval(
       new Date(),
       new Date(new Date().getTime() + (1000 * 60 * 60 * 24))

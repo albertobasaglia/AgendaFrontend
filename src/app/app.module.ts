@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './components/pages/login/login/login.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HomeComponent } from './components/pages/logged/home/home.component';
 import {IsLoggedGuard} from './guards/IsLoggedGuard';
 import {IsAlreadyLoggedGuard} from './guards/IsAlreadyLoggedGuard';
@@ -15,6 +15,11 @@ import {RouterModule} from '@angular/router';
 import { EmptyComponent } from './components/logged/home/empty/empty.component';
 import { ViewAppuntamentoComponent } from './components/logged/home/view-appuntamento/view-appuntamento.component';
 import { ViewPromemoriaComponent } from './components/logged/home/view-promemoria/view-promemoria.component';
+import { NewAppuntamentoComponent } from './components/logged/home/new-appuntamento/new-appuntamento.component';
+import { NewPromemoriaComponent } from './components/logged/home/new-promemoria/new-promemoria.component';
+import {DlDateTimeDateModule, DlDateTimePickerModule} from 'angular-bootstrap-datetimepicker';
+import { EventsComponent } from './components/pages/events/events.component';
+import { BackComponent } from './components/pages/back/back.component';
 
 @NgModule({
   declarations: [
@@ -25,14 +30,21 @@ import { ViewPromemoriaComponent } from './components/logged/home/view-promemori
     ProfileComponent,
     EmptyComponent,
     ViewAppuntamentoComponent,
-    ViewPromemoriaComponent
+    ViewPromemoriaComponent,
+    NewAppuntamentoComponent,
+    NewPromemoriaComponent,
+    EventsComponent,
+    BackComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    DlDateTimeDateModule,
+    DlDateTimePickerModule,
+    FormsModule,
   ],
   providers: [IsLoggedGuard, IsAlreadyLoggedGuard],
   bootstrap: [AppComponent]

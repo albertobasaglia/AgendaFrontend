@@ -1,0 +1,43 @@
+<form [formGroup]="formAppuntamento" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Creazione di un nuovo appuntamento</h2>
+    </div>
+    <div class="col-md-6">
+      <h3>Data di inizio: </h3>
+      {{ formAppuntamento.controls.dataInizio.value | date:'short' }}
+      <dl-date-time-picker
+        startView="day"
+        maxView="year"
+        minView="minute"
+        minuteStep="5"
+        formControlName="dataInizio"
+      >
+      </dl-date-time-picker>
+    </div>
+    <div class="col-md-6">
+      <h3>Data di fine: </h3>
+      {{ formAppuntamento.controls.dataFine.value | date:'short' }}
+      <dl-date-time-picker
+        startView="day"
+        maxView="year"
+        minView="minute"
+        minuteStep="5"
+        formControlName="dataFine"
+      >
+      </dl-date-time-picker>
+    </div>
+    <label for="exampleFormControlSelect2">Persone</label>
+    <select multiple class="form-control" id="exampleFormControlSelect2" formControlName="personaIds">
+      <option
+        [value]="persona.id"
+        *ngFor="let persona of persone"
+      >{{ persona.username }}</option>
+    </select>
+
+    <label for="exampleFormControlTextarea1">Descrizione</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="descrizione"></textarea>
+    <button type="submit" class="btn btn-primary btn-lg btn-block mt-4" [class.disabled]="formAppuntamento.invalid">Salva</button>
+  </div>
+
+</form>
