@@ -1,7 +1,13 @@
 <div class="col-md-12">
   <div class="row">
     <div class="col-md-6">
-      maio
+      <h3>I tuoi appuntamenti per oggi: </h3>
+      <ul class="list-group">
+        <li *ngFor="let appuntamento of appuntamenti" class="list-group-item">
+          "{{ appuntamento.descrizione }}" da {{ appuntamento.dataInizio.toLocaleString() }}
+        </li>
+      </ul>
+      <h3>I tuoi promemoria per oggi: </h3>
     </div>
     <div class="col-md-6">
       ciao

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ApiService} from '../../../../services/api.service';
 import {Appuntamento} from '../../../../models/appuntamento.model';
+import {Promemoria} from '../../../../models/promemoria.model';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +9,9 @@ import {Appuntamento} from '../../../../models/appuntamento.model';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  appuntamenti: Appuntamento[] = [];
+  promemoria: Promemoria[] = [];
 
   constructor(private api: ApiService) { }
 
@@ -17,7 +21,7 @@ export class HomeComponent implements OnInit {
       new Date(new Date().getTime() + (1000 * 60 * 60 * 24))
     )
       .subscribe((appuntamenti: Appuntamento[]) => {
-      console.log(appuntamenti);
+      this.appuntamenti = appuntamenti;
     });
   }
 
