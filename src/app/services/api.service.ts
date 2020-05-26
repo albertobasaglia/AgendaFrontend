@@ -80,6 +80,12 @@ export class ApiService {
   deleteAppuntamentoById(id: number): Observable<Appuntamento> {
     return this.http.delete<Appuntamento>(`${this.apiUrl}/appuntamento/delete/${id.toString()}`, this.getHeaderOptions());
   }
+  getAppuntamentoByDateInterval(from: Date, to: Date): Observable<Appuntamento[]> {
+    return this.http.get<Appuntamento[]>(
+      `${this.apiUrl}/appuntamento/viewDate`,
+      {params: {from: from.toISOString(), to: to.toISOString()}, headers: this.getHeaderField()}
+      );
+  }
 
   // promemoria
 
@@ -94,6 +100,12 @@ export class ApiService {
   }
   deletePromemoriaById(id: number): Observable<Promemoria> {
     return this.http.delete<Promemoria>(`${this.apiUrl}/promemoria/delete/${id.toString()}`, this.getHeaderOptions());
+  }
+  getPromemoriaByDateInterval(from: Date, to: Date): Observable<Promemoria[]> {
+    return this.http.get<Promemoria[]>(
+      `${this.apiUrl}/promemoria/viewDate`,
+      {params: {from: from.toISOString(), to: to.toISOString()}, headers: this.getHeaderField()}
+    );
   }
 
   // telefono
