@@ -12,6 +12,9 @@ import {IsAlreadyLoggedGuard} from './guards/IsAlreadyLoggedGuard';
 import { LoggedComponent } from './components/pages/logged/logged.component';
 import { ProfileComponent } from './components/pages/logged/profile/profile.component';
 import {RouterModule} from '@angular/router';
+import { EmptyComponent } from './components/logged/home/empty/empty.component';
+import { ViewAppuntamentoComponent } from './components/logged/home/view-appuntamento/view-appuntamento.component';
+import { ViewPromemoriaComponent } from './components/logged/home/view-promemoria/view-promemoria.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import {RouterModule} from '@angular/router';
     LoginComponent,
     HomeComponent,
     LoggedComponent,
-    ProfileComponent
+    ProfileComponent,
+    EmptyComponent,
+    ViewAppuntamentoComponent,
+    ViewPromemoriaComponent
   ],
   imports: [
     BrowserModule,

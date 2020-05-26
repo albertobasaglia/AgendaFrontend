@@ -2,15 +2,21 @@
   <div class="row">
     <div class="col-md-6">
       <h3>I tuoi appuntamenti per oggi: </h3>
-      <ul class="list-group">
-        <li *ngFor="let appuntamento of appuntamenti" class="list-group-item">
-          "{{ appuntamento.descrizione }}" da {{ appuntamento.dataInizio.toLocaleString() }}
-        </li>
-      </ul>
+      <div class="list-group">
+        <a
+          href="#"
+           class="list-group-item list-group-item-action"
+           *ngFor="let appuntamento of appuntamenti"
+          [routerLink]="'/logged/home/appuntamento/'+appuntamento.id"
+          routerLinkActive="active"
+        >
+          {{ appuntamento.descrizione }}
+        </a>
+      </div>
       <h3>I tuoi promemoria per oggi: </h3>
     </div>
     <div class="col-md-6">
-      ciao
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>

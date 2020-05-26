@@ -6,6 +6,9 @@ import {HomeComponent} from './components/pages/logged/home/home.component';
 import {IsAlreadyLoggedGuard} from './guards/IsAlreadyLoggedGuard';
 import {LoggedComponent} from './components/pages/logged/logged.component';
 import {ProfileComponent} from './components/pages/logged/profile/profile.component';
+import {EmptyComponent} from './components/logged/home/empty/empty.component';
+import {ViewAppuntamentoComponent} from './components/logged/home/view-appuntamento/view-appuntamento.component';
+import {ViewPromemoriaComponent} from './components/logged/home/view-promemoria/view-promemoria.component';
 
 
 const routes: Routes = [
@@ -13,7 +16,12 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent, canActivateChild: [IsAlreadyLoggedGuard]},
   {path: 'logged', canActivateChild: [IsLoggedGuard], component: LoggedComponent, children: [
       {path: '', redirectTo: 'home', pathMatch: 'full'},
-      {path: 'home', component: HomeComponent},
+      {path: 'home', component: HomeComponent , children: [
+          {path: '', component: EmptyComponent},
+          {path: 'appuntamento/:id', component: ViewAppuntamentoComponent},
+          {path: 'promemoria/:id', component: ViewPromemoriaComponent},
+          {path: '**', redirectTo: ''}
+        ]},
       {path: 'profile', component: ProfileComponent}
     ]}
 

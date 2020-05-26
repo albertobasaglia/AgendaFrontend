@@ -65,6 +65,9 @@ export class ApiService {
   updatePerson(persona: Persona): Observable<Persona> {
     return this.http.put<Persona>(`${this.apiUrl}/persona/update`, persona, this.getHeaderOptions());
   }
+  personeInAppuntamentoById(id: number): Observable<Persona[]> {
+    return this.http.get<Persona[]>(`${this.apiUrl}/appuntamento/persona/${id}`, this.getHeaderOptions());
+  }
 
   // appuntamento
 
