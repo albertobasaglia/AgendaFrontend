@@ -70,6 +70,10 @@ export class ApiService {
   personeInAppuntamentoById(id: number): Observable<Persona[]> {
     return this.http.get<Persona[]>(`${this.apiUrl}/appuntamento/persona/${id}`, this.getHeaderOptions());
   }
+  isFree(persone: number[], from: Date, to: Date): Observable<number[]> {
+    // tslint:disable-next-line:max-line-length
+    return this.http.put<number[]>(`${this.apiUrl}/persona/free`, {who: persone, from, to}, this.getHeaderOptions());
+  }
 
   // appuntamento
 

@@ -3,7 +3,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ApiService} from '../../../../services/api.service';
 import {Appuntamento} from '../../../../models/appuntamento.model';
 import {Persona} from '../../../../models/persona.model';
-
+import {Location} from '@angular/common';
 @Component({
   selector: 'app-view-appuntamento',
   templateUrl: './view-appuntamento.component.html',
@@ -15,7 +15,7 @@ export class ViewAppuntamentoComponent implements OnInit {
   appuntamento: Appuntamento = new Appuntamento();
   persone: Persona[] = [];
 
-  constructor(private router: Router, private api: ApiService, private activatedRoute: ActivatedRoute) { }
+  constructor(private router: Router, private api: ApiService, private activatedRoute: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params: Params) => {
@@ -27,6 +27,15 @@ export class ViewAppuntamentoComponent implements OnInit {
         this.persone = persone;
       });
     });
+  }
+
+  delete() {
+    if (confirm('Sei sicuro di voler cancellare questo appuntamento?')) {
+      this.api.deleteAppuntamentoById(this.id).subscribe(() => {
+        this.location.back();
+        this.api.update.next();
+      });
+    }
   }
 
 }

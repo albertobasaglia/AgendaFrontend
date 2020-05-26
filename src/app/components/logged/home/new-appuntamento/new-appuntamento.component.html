@@ -37,7 +37,11 @@
 
     <label for="exampleFormControlTextarea1">Descrizione</label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="descrizione"></textarea>
-    <button type="submit" class="btn btn-primary btn-lg btn-block mt-4" [class.disabled]="formAppuntamento.invalid">Salva</button>
+    <div *ngIf="personeNonDisponibili.length != 0">
+      <p style="color: #bf2b2b">Persone non disponibili:</p>
+      <p style="color: #bf2b2b" *ngFor="let persona of personeNonDisponibili">{{persona.username}}</p>
+    </div>
+    <button [disabled]="formAppuntamento.invalid" type="submit" class="btn btn-primary btn-lg btn-block mt-4" [class.disabled]="formAppuntamento.invalid">Salva</button>
   </div>
 
 </form>

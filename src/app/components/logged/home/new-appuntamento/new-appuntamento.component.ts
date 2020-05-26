@@ -22,11 +22,23 @@ export class NewAppuntamentoComponent implements OnInit {
 
   persone: Persona[] = [];
 
+  personeNonDisponibili: Persona[] = [];
+
   constructor(private api: ApiService, private router: Router) { }
 
   ngOnInit(): void {
     this.api.listPeople().subscribe((persone: Persona[]) => {
       this.persone = persone;
+    });
+    this.formAppuntamento.controls.personaIds.statusChanges.subscribe(() => {
+      const selezionate: number[] = this.formAppuntamento.controls.personaIds.value;
+      // tslint:disable-next-line:max-line-length
+      this.api.isFree(selezionate, this.formAppuntamento.value.dataInizio, this.formAppuntamento.value.dataFine).subscribe((ids: number[]) => {
+        this.personeNonDisponibili = [];
+        ids.forEach((id: number) => {
+          this.personeNonDisponibili.push(this.persone.find((persona: Persona) => persona.id === id));
+        });
+      });
     });
   }
 
