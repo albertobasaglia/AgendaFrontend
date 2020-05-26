@@ -2,7 +2,8 @@
 <form [formGroup]="formPromemoria" (ngSubmit)="onSubmit()">
 <div class="row">
   <div class="col-md-12">
-    <h2>Creazione di un nuovo promemoria</h2>
+    <h2 *ngIf="!editMode">Creazione di un nuovo promemoria</h2>
+    <h2 *ngIf="editMode">Modifica di un promemoria</h2>
   </div>
     <div class="col-md-6">
       <h3>Data di inizio: </h3>
@@ -38,6 +39,7 @@
 
     <label for="exampleFormControlTextarea1">Descrizione</label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="descrizione"></textarea>
+  <button class="btn btn-danger mt-4" (click)="$event.preventDefault();delete()" *ngIf="editMode">DELETE</button>
   <button type="submit" class="btn btn-primary btn-lg btn-block mt-4" [class.disabled]="formPromemoria.invalid">Salva</button>
 </div>
 

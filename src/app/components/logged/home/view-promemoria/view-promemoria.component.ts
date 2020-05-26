@@ -55,4 +55,8 @@ export class ViewPromemoriaComponent implements OnInit {
     });
   }
 
+  edit() {
+    this.router.navigate(['/logged', 'home', 'newPromemoria', this.id]);
+  }
+
 }

@@ -128,6 +128,9 @@ export class ApiService {
       {headers: this.getHeaderField()}
     );
   }
+  updatePromemoriaById(promemoriaSend: PromemoriaSend, id: number): Observable<Promemoria> {
+    return this.http.put<Promemoria>(`${this.apiUrl}/promemoria/update/${id.toString()}`, promemoriaSend, this.getHeaderOptions());
+  }
 
   // telefono
 

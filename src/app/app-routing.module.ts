@@ -26,6 +26,7 @@ const routes: Routes = [
           {path: 'promemoria/:id', component: ViewPromemoriaComponent},
           {path: 'newAppuntamento', component: NewAppuntamentoComponent},
           {path: 'newPromemoria', component: NewPromemoriaComponent},
+          {path: 'newPromemoria/:id', component: NewPromemoriaComponent},
           {path: '**', redirectTo: ''}
         ]},
       {path: 'profile', component: ProfileComponent},
