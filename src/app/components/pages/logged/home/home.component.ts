@@ -23,6 +23,12 @@ export class HomeComponent implements OnInit {
       .subscribe((appuntamenti: Appuntamento[]) => {
       this.appuntamenti = appuntamenti;
     });
+    this.api.getPromemoriaByDateInterval(
+      new Date(),
+      new Date(new Date().getTime() + (1000 * 60 * 60 * 24))
+    ).subscribe((promemoria: Promemoria[]) => {
+      this.promemoria = promemoria;
+    });
   }
 
 }
